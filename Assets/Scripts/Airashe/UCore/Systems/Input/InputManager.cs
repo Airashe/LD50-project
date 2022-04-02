@@ -45,6 +45,23 @@ namespace Airashe.UCore.Systems.Input
             managerInitialized = true;
         }
 
+        public int IsAnyActive(IEnumerable<int> commandTypeIndexes)
+        {
+            foreach (var command in commands)
+                foreach (var typeIndex in commandTypeIndexes)
+                    if (command.TypeIndex == typeIndex && command.IsActive)
+                        return typeIndex;
+            return 0;
+        }
+
+        public bool IsActive(int commandTypeIndex)
+        {
+            foreach (var command in commands)
+                if (command.TypeIndex == commandTypeIndex && command.IsActive)
+                    return true;
+            return false;
+        }
+
         /// <summary>
         /// Подписать <paramref name="observer"/> на уведомления менеджера ввода.
         /// </summary>
