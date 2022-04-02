@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Airashe.UCore.Common.Behaviours;
@@ -16,12 +17,8 @@ namespace Airashe.UCore.Systems.Input
                                 ISystemManager, 
                                 Common.Behaviours.IObservable<InputCommandStateChanged>
     {
-        public bool Initialized
-        {
-            get => initialized;
-            private set => initialized = value;
-        }
-        private bool initialized;
+        public bool Initialized => managerInitialized && SingletonInitialized;
+        private bool managerInitialized;
         /// <summary>
         /// Текущий глобальный индекс команды.
         /// </summary>
@@ -45,7 +42,7 @@ namespace Airashe.UCore.Systems.Input
         public void InitializeManager()
         {
             GetAllInputCommands();
-            Initialized = true;
+            managerInitialized = true;
         }
 
         /// <summary>

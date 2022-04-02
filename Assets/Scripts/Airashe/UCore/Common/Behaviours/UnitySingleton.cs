@@ -20,6 +20,9 @@ namespace Airashe.UCore.Common.Behaviours
         [Header("Singleton")]
         private static T instance;
 
+        protected bool SingletonInitialized => singletonInitialized;
+        private bool singletonInitialized;
+
         private void Start()
         {
             if (instance != null && instance != this)
@@ -28,6 +31,7 @@ namespace Airashe.UCore.Common.Behaviours
             DontDestroyOnLoad(this);
             instance = (T)this;
 
+            singletonInitialized = true;
             SingletonIntialized();
         }
 
