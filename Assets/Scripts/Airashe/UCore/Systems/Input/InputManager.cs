@@ -154,7 +154,7 @@ namespace Airashe.UCore.Systems.Input
         /// <summary>
         /// Изменить состояние команды ввода.
         /// </summary>
-        /// <param name="commandId">Идентификатор команды.</param>
+        /// <param name="command">Идентификатор команды.</param>
         /// <param name="isActive">Новый статус команды.</param>
         private void ChangeCommandState(InputCommand command, bool isActive)
         {

@@ -48,7 +48,10 @@ namespace LD50.Core
         public GameObject PlayerGO => playerGo;
         private GameObject playerGo;
 
-        private void Start() => InitializeApplication();
+        protected override void SingletonIntialized()
+        {
+            InitializeApplication();
+        }
 
         private void Update()
         {
@@ -94,7 +97,7 @@ namespace LD50.Core
             this.playerGo = GameObject.FindGameObjectWithTag("Player");
             if (this.playerGo == null) throw new System.Exception(string.Format(GameModeIntializationError, GameMode.InGame, "Can not find any game objects by Player tag."));
 
-            this.playerGo.IntializeComponent<IngameController>();
+            this.playerGo.IntializeComponent<IngameLogicController>();
         }
     }
 }

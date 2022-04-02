@@ -10,12 +10,12 @@ namespace LD50.Input.Commands
     public enum InputCommandType : int
     {
         None = 0, 
-        MoveForward = 1, 
-        MoveBackward = 2, 
-        MoveLeft = 3, 
-        MoveRight = 4, 
+        MoveForward = 0x1, 
+        MoveBackward = 0x2, 
+        MoveLeft = 0x4, 
+        MoveRight = 0x8, 
 
-        Interact = 5, 
+        Interact = 0x10, 
 
         MovementMask = MoveForward | MoveBackward | MoveLeft | MoveRight, 
     }

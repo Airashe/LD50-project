@@ -1,3 +1,6 @@
+using Assets.Scripts.LD50.Interact.Items;
+using LD50.Interact.Items;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +15,11 @@ public class Unit : MonoBehaviour
     [Header("Movement")]
     [SerializeField]
     private Vector3 movementDirection;
+
+    [Header("Interactions")]
+    [SerializeField]
+    private float interactionMaxDistance = 1.0f;
+    public float InteractionMaxDistance => interactionMaxDistance;
     public Vector3 MovementDirection
     {
         get => movementDirection;
@@ -22,10 +30,33 @@ public class Unit : MonoBehaviour
     {
         get
         {
-            if (rigidbody == null)
-                rigidbody = GetComponent<Rigidbody2D>();
-            return rigidbody;
+            if (_rigidbody == null)
+                _rigidbody = GetComponent<Rigidbody2D>();
+            return _rigidbody;
         }
     }
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D _rigidbody;
+
+    [SerializeField]
+    private List<Item> inventory;
+    public List<Item> Inventory => inventory;
+
+    public bool RemoveItemFromInventory (Item item)
+    {
+        if (item == null) return false;
+
+        if (inventory.Contains(item))
+        {
+            inventory.Remove(item);
+            return true;
+        }
+        return false;
+    }
+
+    public void AddItemToInteventory (Item item)
+    {
+        if(item == null) return;
+
+        inventory.Add(item);
+    }
 }
