@@ -1,10 +1,26 @@
-﻿using Assets.Scripts.LD50.Interact.Items;
+﻿using Assets.Scripts.LD50.DialogueSystem.Interfaces;
+using Assets.Scripts.LD50.DialogueSystem.Structs;
+using Assets.Scripts.LD50.Interact.Items;
+using LD50.Controllers.Interfaces;
 using UnityEngine;
+using LD50Application = LD50.Core.Application;
 
 namespace LD50.Core.Interact
 {
-    public sealed class Actor : MonoBehaviour, IInteractable<Item>
+    public sealed class Actor : MonoBehaviour, IInteractable<Item>, IDialogueParticiant
     {
+        public DialogueContext dialogueContext;
+        public DialogueData dialogue;
+
+        private static Actor emptyActor;
+        public static Actor Empty()
+        {
+            if (emptyActor != null) return emptyActor;
+
+            var go = new GameObject();
+            emptyActor = go.AddComponent<Actor>();
+            return emptyActor;
+        }
         public GameObject GameObject => this.gameObject;
         [Header("Interactable")]
         [SerializeField]
@@ -15,6 +31,19 @@ namespace LD50.Core.Interact
         private Vector2 interactionPivot;
         public Vector2 InteractionPivot => interactionPivot;
 
+        [Header("Dialogues")]
+        [SerializeField]
+        private Vector2 dialogueBoxPivot;
+        public Vector3 ParticiantWorldPosition
+        {
+            get
+            {
+                var selfPosition = gameObject.transform.position;
+                selfPosition.x += dialogueBoxPivot.x;
+                selfPosition.y += dialogueBoxPivot.y;
+                return selfPosition;
+            }
+        }
         public InteractionResult BeginInteractionWith(Item interactionObject)
         {
             Debug.Log($"Interacted with item: {interactionObject}");
@@ -29,12 +58,14 @@ namespace LD50.Core.Interact
 
         public void InteractionBeginInvoke()
         {
-            throw new System.NotImplementedException();
+            var dialogueController =LD50Application.Instance.PlayerGO.GetComponent<IDialogueController>();
+            if (dialogueController?.IsDialogueActive == false)
+                dialogueController?.StartDialogue(dialogue, dialogueContext);
         }
 
         public void InteractionEndInvoke()
         {
-            throw new System.NotImplementedException();
+            return;
         }
     }
 }

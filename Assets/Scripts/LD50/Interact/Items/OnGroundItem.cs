@@ -3,6 +3,7 @@ using LD50.Controllers;
 using LD50.Core.Interact;
 using LD50.Interact.Items;
 using System;
+using UnityEditor;
 using UnityEngine;
 using LD50Application = LD50.Core.Application;
 
@@ -15,6 +16,7 @@ namespace Assets.Scripts.LD50.Interact
 
         public GameObject GameObject => this.gameObject;
 
+        [Header("Interaction")]
         [SerializeField]
         private float interactionRadius;
         public float InteractionRadius => interactionRadius;
@@ -22,6 +24,23 @@ namespace Assets.Scripts.LD50.Interact
         [SerializeField]
         private Vector2 interactionPivot;
         public Vector2 InteractionPivot => interactionPivot;
+
+        public bool Destroyed => (gameObject?.activeSelf ?? true) != true;
+        private bool IsItemVisible
+        {
+            get => this?.GetComponent<SpriteRenderer>()?.enabled ?? false;
+            set
+            {
+                if (this?.gameObject?.GetComponent<SpriteRenderer>() != null) this.GetComponent<SpriteRenderer>().enabled = value;
+            }
+        }
+
+        private void Start()
+        {
+            var render = this.gameObject.GetComponent<SpriteRenderer>();
+            if (render != null && itemData != null)
+                render.sprite = itemData.Sprite;
+        }
 
         private void OnDrawGizmos()
         {
@@ -31,7 +50,7 @@ namespace Assets.Scripts.LD50.Interact
 
         public void InteractionEndInvoke()
         {
-            
+            IsItemVisible = true;
         }
 
         public void InteractionBeginInvoke()
@@ -40,6 +59,7 @@ namespace Assets.Scripts.LD50.Interact
             if (uiController == null) return;
 
             uiController.DragDropBeginInvoke(this);
+            IsItemVisible = false;
         }
 
         public static implicit operator Item (OnGroundItem groundItem)

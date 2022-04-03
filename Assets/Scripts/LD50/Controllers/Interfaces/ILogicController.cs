@@ -11,6 +11,7 @@ namespace LD50.Controllers.Interfaces
     public interface ILogicController
     {
         public IUIController UiController { get; }
+        public IDialogueController DialogueController { get; }
         public Unit ControlledUnit { get; }
 
         public InteractionResult UseItemOnWorld<T>(T item);

@@ -8,6 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using LD50.Core.Extensions;
 using UnityEngine;
+using LD50.Core.ScriptableObjects;
+using LD50.DialogueSystem.Managers;
 
 namespace LD50.Core
 {
@@ -15,8 +17,12 @@ namespace LD50.Core
     {
         private const string GameModeIntializationError = "{0} initialization error: {1}";
 
+        public ApplicationConfiguration applicationConfiguration;
         public ISystemManager InputManager => inputManager;
         private ISystemManager inputManager;
+
+        public ISystemManager DialogueManager => dialogueManager;
+        private ISystemManager dialogueManager;
 
         private bool IsAllManagersReady
         {
@@ -69,6 +75,7 @@ namespace LD50.Core
         private void IntializeManagers()
         {
             inputManager = ManagerFactory.InitializeManager<InputManager>();
+            dialogueManager = ManagerFactory.InitializeManager<DialoguesManager>();
         }
 
         private bool IsManagersReady()

@@ -27,8 +27,8 @@ namespace Assets.Scripts.LD50.Interact.Items
 
         public void DestroyOnGroundItem()
         {
-            if (onGroundItem != null)
-                GameObject.Destroy(onGroundItem.gameObject);
+            if (onGroundItem?.Destroyed == false)
+                onGroundItem?.gameObject?.SetActive(false);
         }
 
         public override string ToString()

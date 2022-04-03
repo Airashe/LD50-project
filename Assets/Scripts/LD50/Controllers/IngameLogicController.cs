@@ -31,6 +31,19 @@ namespace LD50.Core.Controllers
         }
         private IUIController uiController;
 
+        public IDialogueController DialogueController
+        {
+            get
+            {
+                if (uiController == null)
+                {
+                    dialogueController = gameObject.IntializeComponent<IngameDialogueController>();
+                }
+                return dialogueController;
+            }
+        }
+        private IDialogueController dialogueController;
+
         public Unit ControlledUnit
         {
             get => controlledUnit;
@@ -59,6 +72,12 @@ namespace LD50.Core.Controllers
             MoveConrolledUnit();
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(ControlledUnit?.transform.position ?? Vector3.zero, ControlledUnit?.InteractionMaxDistance ?? 0);
+        }
+
         private void OnPlayerInput(InputCommandStateData inputData)
         {
             if (ControlledUnit == null || inputData.CommandType == InputCommandType.None) return;
@@ -75,8 +94,6 @@ namespace LD50.Core.Controllers
             }
         }
 
-        #region InteractionsWithWorld
-
         private void ProcessInteraction(bool isInteractCommandActive)
         {
             interactionActive = isInteractCommandActive;
@@ -87,6 +104,8 @@ namespace LD50.Core.Controllers
             }
             EndInteraction();
         }
+
+        #region InteractionsWithWorld
 
         private void BeginInteraction()
         {
@@ -111,7 +130,10 @@ namespace LD50.Core.Controllers
             return interactableComponent?.BeginInteractionWith(item) ?? InteractionResult.NoInteractableItem;
         }
 
-        private void EndInteraction() => currentInteraction?.InteractionEndInvoke();
+        private void EndInteraction()
+        {
+            currentInteraction?.InteractionEndInvoke();
+        }
 
         private bool InteractableInRange(IInteractable target)
         {
@@ -171,11 +193,14 @@ namespace LD50.Core.Controllers
         void Airashe.UCore.Common.Behaviours.IObserver<InputCommandStateChanged>.OnObservableNotification(InputCommandStateChanged notificationData) => OnPlayerInput(notificationData);
 
         bool IInitializable.IsInitialized => isInitialized;
+
         private bool isInitialized;
         void IInitializable.Initialize()
         {
             InputManager.Instance.Subscribe(this);
             uiController = gameObject.IntializeComponent<IngameUIController>();
+            dialogueController = gameObject.IntializeComponent<IngameDialogueController>();
+
             isInitialized = true;
         }
         #endregion

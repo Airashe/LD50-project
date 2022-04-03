@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LD50.Interact.Items
 {
-    [CreateAssetMenu(fileName = "Item", menuName = "Core/Item", order = 1)]
+    [CreateAssetMenu(fileName = "Item", menuName = "LD50/Item", order = 1)]
     public class ItemData : ScriptableObject
     {
         public string Name;
