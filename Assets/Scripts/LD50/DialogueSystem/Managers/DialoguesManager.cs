@@ -20,11 +20,10 @@ namespace LD50.DialogueSystem.Managers
         [SerializeField]
         private int currentItemIndex;
 
-        private DataBaseManager dataBaseManager;
+        private DataBaseManager dataBaseManager => DataBaseManager.Instance;
 
         public void InitializeManager()
         {
-            dataBaseManager = DataBaseManager.Instance;
             intialized = true;
         }
 

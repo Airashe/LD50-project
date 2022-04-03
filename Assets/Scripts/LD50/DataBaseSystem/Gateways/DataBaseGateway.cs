@@ -13,7 +13,7 @@ namespace Assets.Scripts.LD50.DataBaseSystem.Gateways
         public DialogueData GetDialogueDataById(int id)
         {
             if (dialoguesDatas.Length <= id)
-                return new DialogueData();
+                return null;
             return dialoguesDatas[id];
         }
     }

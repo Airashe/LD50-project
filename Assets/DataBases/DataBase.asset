@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3ec31cdff5f3a4b936d798da319963, type: 3}
   m_Name: DataBase
   m_EditorClassIdentifier: 
-  dialoguesDatas:
-  - {fileID: 11400000, guid: cf8c84babe3b81642ac17be078f6b57e, type: 2}
+  dialoguesDatas: []

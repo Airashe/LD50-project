@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.LD50.DialogueSystem.Interfaces;
 using Assets.Scripts.LD50.DialogueSystem.Structs;
+using Assets.Scripts.LD50.EventSystem.Structs;
 using Assets.Scripts.LD50.Interact.Items;
 using LD50.Controllers.Interfaces;
 using UnityEngine;
@@ -9,8 +10,27 @@ namespace LD50.Core.Interact
 {
     public sealed class Actor : MonoBehaviour, IInteractable<Item>, IDialogueParticiant
     {
-        public DialogueContext dialogueContext;
-        public DialogueData dialogue;
+        public ItemInteractBehaviour ItemInteractBehaviour
+        {
+            get
+            {
+                if (itemInteractBehaviour == null)
+                    itemInteractBehaviour = GetComponent<ItemInteractBehaviour>();
+                return itemInteractBehaviour;
+            }
+        }
+        public InteractBehaviour InteractBehaviour
+        {
+            get
+            {
+                if (interactBehaviour == null)
+                    interactBehaviour = GetComponent<InteractBehaviour>();
+                return interactBehaviour;
+            }
+        }
+        private ItemInteractBehaviour itemInteractBehaviour;
+        [SerializeField]
+        private InteractBehaviour interactBehaviour;
 
         private static Actor emptyActor;
         public static Actor Empty()
@@ -46,8 +66,10 @@ namespace LD50.Core.Interact
         }
         public InteractionResult BeginInteractionWith(Item interactionObject)
         {
-            Debug.Log($"Interacted with item: {interactionObject}");
-            return InteractionResult.Success;
+            if (ItemInteractBehaviour == null || interactionObject == null)
+                return InteractionResult.NoInteractableItem;
+
+            return ItemInteractBehaviour.InteractionWith(gameObject, interactionObject);
         }
 
         private void OnDrawGizmos()
@@ -58,14 +80,14 @@ namespace LD50.Core.Interact
 
         public void InteractionBeginInvoke()
         {
-            var dialogueController =LD50Application.Instance.PlayerGO.GetComponent<IDialogueController>();
-            if (dialogueController?.IsDialogueActive == false)
-                dialogueController?.StartDialogue(dialogue, dialogueContext);
+            if (InteractBehaviour == null) return;
+            InteractBehaviour.InteractionBegin(gameObject);
         }
 
         public void InteractionEndInvoke()
         {
-            return;
+            if (InteractBehaviour == null) return;
+            InteractBehaviour.InteractionEnd(gameObject);
         }
     }
 }

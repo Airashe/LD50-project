@@ -50,5 +50,10 @@ namespace Assets.Scripts.LD50.DialogueSystem.Structs
             return Equals(data);
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
     }
 }

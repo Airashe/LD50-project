@@ -34,7 +34,7 @@ namespace Assets.Scripts.LD50.DataBaseSystem.Manager
                 if (dialogueInGateway.Equals(dialogueData))
                     return dialogueData;
             }
-            return new DialogueData();
+            return dialogueData ?? ScriptableObject.CreateInstance<DialogueData>();
         }
 
         public void InitializeManager()
