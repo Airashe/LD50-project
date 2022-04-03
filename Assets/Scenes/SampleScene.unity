@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 796366685}
   - component: {fileID: 796366684}
   m_Layer: 0
-  m_Name: Test
+  m_Name: Dialogue0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,6 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   events:
   - {fileID: 796366684}
+  - {fileID: 0}
 --- !u!1 &2128686328
 GameObject:
   m_ObjectHideFlags: 0

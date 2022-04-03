@@ -27,6 +27,7 @@ namespace LD50.Core.Interact
                     interactBehaviour = GetComponent<InteractBehaviour>();
                 return interactBehaviour;
             }
+            set => interactBehaviour = value;
         }
         private ItemInteractBehaviour itemInteractBehaviour;
         [SerializeField]
