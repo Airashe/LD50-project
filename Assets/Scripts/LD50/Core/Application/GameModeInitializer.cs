@@ -1,4 +1,5 @@
-﻿using LD50.Controllers.Interfaces;
+﻿using Assets.Scripts.LD50.Controllers.VisualNovelControllers;
+using LD50.Controllers.Interfaces;
 using LD50.Core.Controllers;
 using LD50.Core.Enums;
 using LD50.Core.Extensions;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using LD50Application = LD50.Core.Application;
+using LD50Application = LD50.Core.GameApplication;
 namespace LD50.Core
 { 
     public static class GameModeInitializer
@@ -22,20 +23,34 @@ namespace LD50.Core
                     IntitalizeLogicController<IngameLogicController>(mode);
                     break;
                 case GameMode.VisualNovel:
-                    IntitalizeLogicController<IngameLogicController>(mode);
+                    IntitalizeLogicController<VNLogicController>(mode);
                     break;
                 default:
                     throw new Exception($"Unkown game mode {mode}");
-                    break;
             }
         }
 
         private static void IntitalizeLogicController<TLogicController>(GameMode mode) where TLogicController : Component, IInitializable, ILogicController
         {
             var playerGO = LD50Application.Instance.PlayerGO;
-            if (playerGO == null) throw new System.Exception(string.Format(GameModeIntializationError, mode, "Can not find any game objects by Player tag."));
 
-            playerGO.IntializeComponent<TLogicController>();
+            var logicController = playerGO.IntializeComponent<TLogicController>();
+            logicController.ControlledUnit = LD50Application.Instance.CurrentSceneContext.PlayerUnit;
+
+            int modeMask = 0;
+            switch (mode)
+            {
+                case GameMode.InGame:
+                    modeMask = LD50Application.Instance.applicationConfiguration.IngameLayerMask.value;
+                    break;
+                case GameMode.VisualNovel:
+                    modeMask = LD50Application.Instance.applicationConfiguration.VisualNovelLayerMask.value;
+                    break;
+                default:
+                    throw new Exception($"Unkown game mode {mode}");
+            }
+
+            playerGO.GetComponentInChildren<Camera>().cullingMask = modeMask;
         }
     }
 }

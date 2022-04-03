@@ -12,7 +12,7 @@ namespace LD50.Controllers.Interfaces
     {
         public IUIController UiController { get; }
         public IDialogueController DialogueController { get; }
-        public Unit ControlledUnit { get; }
+        public Unit ControlledUnit { get; set; }
 
         public InteractionResult UseItemOnWorld<T>(T item);
     }

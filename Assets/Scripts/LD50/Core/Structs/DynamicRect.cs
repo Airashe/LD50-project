@@ -33,8 +33,8 @@ namespace Assets.Scripts.LD50.Core.Structs
 
         public float AbsoluteX => Screen.width * X / 100;
         public float AbsoluteY => Screen.height * Y / 100;
-        public float AbsoluteWidth => Screen.width * Width / 100;
-        public float AbsoluteHeight => Screen.width * Height / 100;
+        public float AbsoluteWidth => Screen.width * (Width / 100);
+        public float AbsoluteHeight => Screen.width * (Height / 100);
 
         public float LeftCornerAbsouleX => AbsoluteX - AbsoluteWidth / 2;
         public float LeftCornerAbsouleY => AbsoluteY - AbsoluteHeight / 2;

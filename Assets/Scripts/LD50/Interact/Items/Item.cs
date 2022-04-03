@@ -31,6 +31,12 @@ namespace Assets.Scripts.LD50.Interact.Items
                 onGroundItem?.gameObject?.SetActive(false);
         }
 
+        public void ReturnOnGroundItem()
+        {
+            if (onGroundItem != null)
+                onGroundItem.gameObject?.SetActive(true);
+        }
+
         public override string ToString()
         {
             return $"Item ({itemData?.Name ?? String.Empty})";

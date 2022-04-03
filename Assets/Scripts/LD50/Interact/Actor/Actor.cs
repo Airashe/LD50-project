@@ -1,10 +1,11 @@
 ﻿using Assets.Scripts.LD50.DialogueSystem.Interfaces;
 using Assets.Scripts.LD50.DialogueSystem.Structs;
+using Assets.Scripts.LD50.EventSystem.Manager;
 using Assets.Scripts.LD50.EventSystem.Structs;
 using Assets.Scripts.LD50.Interact.Items;
 using LD50.Controllers.Interfaces;
 using UnityEngine;
-using LD50Application = LD50.Core.Application;
+using LD50Application = LD50.Core.GameApplication;
 
 namespace LD50.Core.Interact
 {
@@ -65,10 +66,14 @@ namespace LD50.Core.Interact
                 return selfPosition;
             }
         }
+
+        private string actorName;
+        public string ActorName => string.IsNullOrEmpty(actorName) ? gameObject.name : actorName;
+
         public InteractionResult BeginInteractionWith(Item interactionObject)
         {
             if (ItemInteractBehaviour == null || interactionObject == null)
-                return InteractionResult.NoInteractableItem;
+                return InteractionResult.NotValidTarget;
 
             return ItemInteractBehaviour.InteractionWith(gameObject, interactionObject);
         }
@@ -82,13 +87,13 @@ namespace LD50.Core.Interact
         public void InteractionBeginInvoke()
         {
             if (InteractBehaviour == null) return;
-            InteractBehaviour.InteractionBegin(gameObject);
+            EventManager.Instance.StartEvent(gameObject, InteractBehaviour);
         }
 
         public void InteractionEndInvoke()
         {
             if (InteractBehaviour == null) return;
-            InteractBehaviour.InteractionEnd(gameObject);
+             EventManager.Instance.EndEvent(gameObject, InteractBehaviour);
         }
     }
 }

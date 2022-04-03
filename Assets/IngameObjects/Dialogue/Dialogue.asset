@@ -15,14 +15,18 @@ MonoBehaviour:
   dialogueIndex: 1
   items:
   - name: "\u041F\u043E\u0434\u043F\u0438\u0441\u044C \u043A \u0444\u0440\u0430\u0437\u0435"
+    evaluationSpeed: 25
     type: 0
     interactorId: 0
     quotes:
     - data: "\u0424\u0440\u0430\u0437\u0430 1"
-      quoteTime: 10
+      quoteTime: 3
+      scriptableEvent: {fileID: 0}
   - name: "\u041F\u043E\u0434\u043F\u0438\u0441\u044C \u043A \u0444\u0440\u0430\u0437\u0435"
+    evaluationSpeed: 25
     type: 0
     interactorId: 0
     quotes:
     - data: "\u0424\u0440\u0430\u0437\u0430 12"
       quoteTime: 10
+      scriptableEvent: {fileID: 0}

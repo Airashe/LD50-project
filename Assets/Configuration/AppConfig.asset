@@ -13,3 +13,15 @@ MonoBehaviour:
   m_Name: AppConfig
   m_EditorClassIdentifier: 
   dragDropIconSize: {x: 25, y: 25}
+  VisualNovelLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  VisualNovelLayerMask:
+    serializedVersion: 2
+    m_Bits: 129
+  IngameLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  IngameLayerMask:
+    serializedVersion: 2
+    m_Bits: 65

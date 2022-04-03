@@ -12,6 +12,7 @@ namespace Assets.Scripts.LD50.DialogueSystem.Structs
         private int dialogueIndex = -1;
         [SerializeField]
         public List<DialogueItem> items;
+        public DialogueContext dialogueContext;
 
         public DialogueItem this[int index]
 

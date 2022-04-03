@@ -5,6 +5,7 @@ namespace LD50.Controllers.Interfaces
 {
     public interface IDialogueController
     {
+        public string CurrentLine { get; }
         public bool IsDialogueActive { get; }
         public DialogueItem CurrentDialogueItem { get; }
         public DialogueContext DialogueContext { get; }

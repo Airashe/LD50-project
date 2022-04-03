@@ -7,11 +7,13 @@ namespace LD50.Core.Managers
     {
         public static T InitializeManager<T>() where T : MonoBehaviour, ISystemManager
         {
-            var managerGO = Application.Instance.gameObject;
+            var managerGO = GameApplication.Instance.gameObject;
             managerGO.transform.position = Vector3.zero;
-            managerGO.AddComponent<T>();
             
             var manager = managerGO.GetComponent<T>();
+            if (manager == null)
+                manager = managerGO.AddComponent<T>();
+
             manager.InitializeManager();
             return manager;
         }

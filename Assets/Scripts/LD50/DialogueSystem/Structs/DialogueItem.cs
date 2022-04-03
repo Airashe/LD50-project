@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LD50.DialogueSystem.Enums;
+using Assets.Scripts.LD50.DialogueSystem.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace Assets.Scripts.LD50.DialogueSystem.Structs
         [SerializeField]
         private string name;
 #endif
+
+        [SerializeField]
+        private int evaluationSpeed;
+        public int EvalutaionSpeed => evaluationSpeed;
+
         [SerializeField]
         private DialogueItemType type;
         public DialogueItemType Type => type;
@@ -24,6 +30,22 @@ namespace Assets.Scripts.LD50.DialogueSystem.Structs
         [SerializeField]
         private int interactorId;
         public int InteractorId => interactorId;
+
+        public IDialogueParticiant Interactor
+        {
+            get
+            {
+                if (dialogueData?.dialogueContext == null || dialogueData.dialogueContext.DialogueParticiants.Count() < interactorId)
+                    return null;
+                return dialogueData.dialogueContext.DialogueParticiants[interactorId];
+            }
+        }
+        public DialogueData DialogueData
+        {
+            get => dialogueData;
+            set => dialogueData = value;
+        }
+        private DialogueData dialogueData;
 
         [SerializeField]
         private DialogueQuote[] quotes;
@@ -36,6 +58,7 @@ namespace Assets.Scripts.LD50.DialogueSystem.Structs
                 return DialogueQuote.Empty;
             }
         }
+
         public DialogueQuote[] Answers
         {
             get

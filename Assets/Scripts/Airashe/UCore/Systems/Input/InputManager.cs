@@ -27,10 +27,8 @@ namespace Airashe.UCore.Systems.Input
         /// Текущие команды, доступные пользователю.
         /// </summary>
         public List<InputCommand> commands;
-        /// <summary>
-        /// Событие происходящее когда пользователь изменил статус команды ввода.
-        /// </summary>
-        private event Action<InputCommandStateChanged> commandStateChanged;
+
+        private List<Common.Behaviours.IObserver<InputCommandStateChanged>> observers;
 
         private void Update()
         {
@@ -42,6 +40,7 @@ namespace Airashe.UCore.Systems.Input
         public void InitializeManager()
         {
             GetAllInputCommands();
+            observers = new List<Common.Behaviours.IObserver<InputCommandStateChanged>>();
             managerInitialized = true;
         }
 
@@ -70,7 +69,7 @@ namespace Airashe.UCore.Systems.Input
         {
             if (observer == null) return;
 
-            commandStateChanged += observer.OnObservableNotification;
+            observers.Add(observer);
         }
 
         /// <summary>
@@ -81,7 +80,7 @@ namespace Airashe.UCore.Systems.Input
         {
             if (observer == null) return;
 
-            commandStateChanged -= observer.OnObservableNotification;
+            observers.Remove(observer);
         }
 
         /// <summary>
@@ -170,8 +169,10 @@ namespace Airashe.UCore.Systems.Input
         {
             var notificationData = new InputCommandStateChanged(command.TypeIndex, command.IsActive);
 
-            var observersSnapshot = commandStateChanged;
-            if (observersSnapshot != null) observersSnapshot(notificationData);
+            foreach(var observer in observers)
+            {
+                observer.OnObservableNotification(notificationData);
+            }
         }
     }
 }

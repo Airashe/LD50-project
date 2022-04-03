@@ -5,7 +5,7 @@ using LD50.Interact.Items;
 using System;
 using UnityEditor;
 using UnityEngine;
-using LD50Application = LD50.Core.Application;
+using LD50Application = LD50.Core.GameApplication;
 
 namespace Assets.Scripts.LD50.Interact
 {

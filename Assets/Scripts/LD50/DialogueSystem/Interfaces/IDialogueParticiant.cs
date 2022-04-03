@@ -9,6 +9,7 @@ namespace Assets.Scripts.LD50.DialogueSystem.Interfaces
 {
     public interface IDialogueParticiant
     {
+        public string ActorName { get; }
         public Vector3 ParticiantWorldPosition { get; }
     }
 }

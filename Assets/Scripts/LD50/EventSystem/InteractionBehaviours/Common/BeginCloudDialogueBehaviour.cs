@@ -1,7 +1,7 @@
 using Assets.Scripts.LD50.DialogueSystem.Structs;
 using Assets.Scripts.LD50.EventSystem.Structs;
 using LD50.Core.Interact;
-using LD50Application = LD50.Core.Application;
+using LD50Application = LD50.Core.GameApplication;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
