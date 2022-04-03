@@ -11,27 +11,26 @@ namespace Assets.Scripts.LD50.EventSystem.Structs
 {
     public class MultipleEventsBehaviour : ItemInteractBehaviour
     {
+        public ItemInteractBehaviour[] eventsByItem;
         public InteractBehaviour[] events;
 
         private Item interactionItem;
         public override InteractionResult InteractionWith(GameObject source, Item item)
         {
-            interactionItem = item;
-            InteractionBegin(source);
-            return InteractionResult.Success;
+            foreach (var e in eventsByItem)
+            {
+                if (e != null && !(e is ItemInteractBehaviour))
+                    e.InteractionBegin(source);
+            }
+            return eventsByItem.Length == 0 ? InteractionResult.NotValidTarget : InteractionResult.Success;
         }
 
         public override InteractionResult InteractionBegin(GameObject source)
         {
             foreach (var e in events)
             {
-                var itemE = e as ItemInteractBehaviour;
-                if(itemE != null)
-                {
-                    itemE.InteractionWith(source, interactionItem);
-                    continue;
-                }
-                e.InteractionBegin(source);
+                if (e != null && !(e is ItemInteractBehaviour))
+                    e.InteractionBegin(source);
             }
             return InteractionResult.Success;
         }

@@ -15,8 +15,6 @@ namespace LD50.Core
 {
     public sealed class Application : UnitySingleton<Application>
     {
-        private const string GameModeIntializationError = "{0} initialization error: {1}";
-
         public ApplicationConfiguration applicationConfiguration;
         public ISystemManager InputManager => inputManager;
         private ISystemManager inputManager;
@@ -45,7 +43,8 @@ namespace LD50.Core
             {
                 if (gameMode != value)
                 {
-                    ChangeGameMode(value);
+                    GameModeInitializer.IntitalizeMode(value);
+                    this.gameMode = value;
                 }
             }
         }
@@ -69,6 +68,7 @@ namespace LD50.Core
 
         private void InitializeApplication()
         {
+            this.playerGo = GameObject.FindGameObjectWithTag("Player");
             IntializeManagers();
         }
 
@@ -83,28 +83,6 @@ namespace LD50.Core
             bool result = true;
             result &= inputManager.Initialized;
             return result;
-        }
-
-        public void ChangeGameMode(GameMode mode)
-        {
-            switch (mode)
-            {
-                case GameMode.InGame:
-                    IntializeIngameMode();
-                    break;
-                default:
-                    throw new System.ArgumentException("Invalid game mode");
-            }
-
-            this.gameMode = mode;
-        }
-
-        private void IntializeIngameMode()
-        {
-            this.playerGo = GameObject.FindGameObjectWithTag("Player");
-            if (this.playerGo == null) throw new System.Exception(string.Format(GameModeIntializationError, GameMode.InGame, "Can not find any game objects by Player tag."));
-
-            this.playerGo.IntializeComponent<IngameLogicController>();
         }
     }
 }

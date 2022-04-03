@@ -10,5 +10,6 @@ namespace LD50.Core.Enums
     {
         None = 0, 
         InGame = 1, 
+        VisualNovel = 2,
     }
 }
