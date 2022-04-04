@@ -48,24 +48,27 @@ namespace LD50.DialogueSystem.Managers
             currentItemIndex = -1;
         }
 
-        public void ChoseAnswer(GameObject source, int answerIndex)
+        public DialogueItem ChoseAnswer(GameObject source, int answerIndex)
         {
-            if (activeDialogue == null) return;
-            if (currentItemIndex >= activeDialogue.Length) return;
+            if (activeDialogue == null) return DialogueItem.EndItem;
+            if (currentItemIndex >= activeDialogue.Length) return DialogueItem.EndItem;
             var currentItem = activeDialogue[currentItemIndex];
-            if (answerIndex >= currentItem.Answers.Length) return;
-
-
-            StartAnswerEvent(source, currentItem.Answers[answerIndex]);
+            if (answerIndex >= currentItem.Answers.Length) return GetDialogueNextItem();
+            return ChoseAnswer(source, currentItem.Answers[answerIndex]);
         }
 
-        public void ChoseAnswer(GameObject source, DialogueQuote answer)
+        public DialogueItem ChoseAnswer(GameObject source, DialogueQuote answer)
         {
-            if (activeDialogue == null) return;
-            if (currentItemIndex >= activeDialogue.Length) return;
+            if (activeDialogue == null) return DialogueItem.EndItem;
+            if (currentItemIndex >= activeDialogue.Length) return GetDialogueNextItem();
 
             if (activeDialogue.items[currentItemIndex].Answers.Contains(answer))
                 StartAnswerEvent(source, answer);
+            if (answer.nextDialogue != null)
+            {
+                ActivateDialogue(answer.nextDialogue, activeDialogue.dialogueContext);
+            }
+            return GetDialogueNextItem();
         }
         private void StartAnswerEvent(GameObject source, DialogueQuote answer)
         {
@@ -85,6 +88,14 @@ namespace LD50.DialogueSystem.Managers
             var item = activeDialogue[currentItemIndex];
             if (item.Type == Assets.Scripts.LD50.DialogueSystem.Enums.DialogueItemType.Quote)
                 lastQuoteItem = item;
+
+            if (item.Type != Assets.Scripts.LD50.DialogueSystem.Enums.DialogueItemType.Answer && item.Quote.nextDialogue != null)
+            {
+                ActivateDialogue(item.Quote.nextDialogue, activeDialogue.dialogueContext);
+                return GetDialogueNextItem();
+            }
+                
+
             return item;
         }
 

@@ -92,7 +92,7 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
             var nameRect = currentRect;
             nameRect.position += new Vector2(10, 10);
             nameRect.size = new Vector2(currentRect.width - 20, 30);
-            GUI.Label(nameRect, lastQuoteItem.Interactor.ActorName);
+            GUI.Label(nameRect, lastQuoteItem.Interactor?.ActorName ?? lastQuoteItem.InteractorId.ToString());
             currentRect.position += new Vector2(15, 25);
             currentRect.size -= new Vector2(30, 50);
             GUI.Label(currentRect, lanstQouteLine.ToString());
@@ -131,18 +131,19 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
             }
             if (!answering)
             {
-                NextFrame();
+                NextFrame(DialoguesManager.Instance.GetDialogueNextItem());
             }
         }
 
         private void ProcessClickOnAnswerButton()
         {
-            var mousePosition = new Vector2(Screen.width, Screen.height - Input.mousePosition.y);
+            var mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             for(int i = 0; i < answersRects.Length; i++)
             {
                 if (answersRects[i].Contains(mousePosition))
                 {
-                    DialoguesManager.Instance.ChoseAnswer(gameObject, i);
+                    var nextItem = DialoguesManager.Instance.ChoseAnswer(gameObject, i);
+                    NextFrame(nextItem);
                     break;
                 }
             }
@@ -151,7 +152,7 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
         private bool MouseOverAnswerArea()
         {
             var answering = DialoguesManager.Instance.CurrentItem.Type == DialogueSystem.Enums.DialogueItemType.Answer;
-            var mousePosition = new Vector2(Screen.width, Screen.height - Input.mousePosition.y);
+            var mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             return answering && answersAreaRect.Contains(mousePosition);
         }
 
@@ -160,7 +161,7 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
 
         #region DialogueStepsLogic
 
-        private void NextFrame()
+        private void NextFrame(DialogueItem nextItem)
         {
             if (!lanstQouteLine.Evaluated)
             {
@@ -168,7 +169,6 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
                 return;
             }
 
-            DialoguesManager.Instance.GetDialogueNextItem();
             if (DialoguesManager.Instance.CurrentItem.Type == DialogueSystem.Enums.DialogueItemType.Answer)
             {
                 var itemsCount = DialoguesManager.Instance.CurrentItem.Answers.Length;

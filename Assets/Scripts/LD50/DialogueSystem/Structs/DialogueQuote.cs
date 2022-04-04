@@ -18,6 +18,7 @@ namespace Assets.Scripts.LD50.DialogueSystem.Structs
         public string data;
         public float quoteTime;
         public ScriptableInteractBehaviour scriptableEvent;
+        public DialogueData nextDialogue;
         public override string ToString()
         {
             return data;

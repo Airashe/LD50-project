@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4564944b91cba1249b4399f582d9761e, type: 3}
+  m_Name: TreeDream1_p2_a
+  m_EditorClassIdentifier: 
+  dialogueIndex: 2
+  items:
+  - name: "\u041A\u0442\u043E \u0442\u044B?"
+    evaluationSpeed: 5
+    type: 0
+    interactorId: 1
+    quotes:
+    - data: "\u041A\u0442\u043E \u0442\u044B?"
+      quoteTime: 0
+      scriptableEvent: {fileID: 0}
+      nextDialogue: {fileID: 0}
+  - name: "\u041D\u0435 \u0442\u0430\u043A\u0430\u044F \u043A\u0430\u043A \u0442\u044B"
+    evaluationSpeed: 14
+    type: 0
+    interactorId: 0
+    quotes:
+    - data: "\u041D\u0435 \u0442\u0430\u043A\u0430\u044F, \u043A\u0430\u043A \u0442\u044B... "
+      quoteTime: 0
+      scriptableEvent: {fileID: 0}
+      nextDialogue: {fileID: 0}
+  - name: 
+    evaluationSpeed: 14
+    type: 0
+    interactorId: 0
+    quotes:
+    - data: 
+      quoteTime: 0
+      scriptableEvent: {fileID: 0}
+      nextDialogue: {fileID: 11400000, guid: fa790e42000754846a1c602331efc39c, type: 2}
+  dialogueContext:
+    dialogueParticiants:
+    - {fileID: 0}
+    - {fileID: 0}

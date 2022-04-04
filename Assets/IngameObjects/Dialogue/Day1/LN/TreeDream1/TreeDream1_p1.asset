@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4564944b91cba1249b4399f582d9761e, type: 3}
+  m_Name: TreeDream1_p1
+  m_EditorClassIdentifier: 
+  dialogueIndex: 1
+  items:
+  - name: "\u0417\u0434\u0440\u0430\u0432\u0441\u0442\u0432\u0443\u0439, \u0434\u0438\u0442\u044F."
+    evaluationSpeed: 14
+    type: 0
+    interactorId: 0
+    quotes:
+    - data: "\u0417\u0434\u0440\u0430\u0432\u0441\u0442\u0432\u0443\u0439, \u0434\u0438\u0442\u044F."
+      quoteTime: 0
+      scriptableEvent: {fileID: 11400000, guid: 777b460b276124046888202b1401df5d, type: 2}
+      nextDialogue: {fileID: 0}
+  - name: "\u041E\u0442\u0432\u0435\u0442"
+    evaluationSpeed: 14
+    type: 1
+    interactorId: 1
+    quotes:
+    - data: "\u041A\u0442\u043E \u0442\u044B?"
+      quoteTime: 0
+      scriptableEvent: {fileID: 0}
+      nextDialogue: {fileID: 11400000, guid: 1a81a817aace0e34087e324c050acaf2, type: 2}
+    - data: "\u041A\u0430\u043A \u0442\u044B \u0443\u043C\u0435\u0435\u0448\u044C
+        \u0433\u043E\u0432\u043E\u0440\u0438\u0442\u044C?"
+      quoteTime: 0
+      scriptableEvent: {fileID: 0}
+      nextDialogue: {fileID: 11400000, guid: c5e41a6842e051944a585709c8ceb8f5, type: 2}
+  dialogueContext:
+    dialogueParticiants:
+    - {fileID: 0}
+    - {fileID: 0}

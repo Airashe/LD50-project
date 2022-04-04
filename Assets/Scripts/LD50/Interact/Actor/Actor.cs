@@ -55,6 +55,9 @@ namespace LD50.Core.Interact
 
         [Header("Dialogues")]
         [SerializeField]
+        private string actorName;
+        public string ActorName => string.IsNullOrEmpty(actorName) ? gameObject.name : actorName;
+        [SerializeField]
         private Vector2 dialogueBoxPivot;
         public Vector3 ParticiantWorldPosition
         {
@@ -66,9 +69,6 @@ namespace LD50.Core.Interact
                 return selfPosition;
             }
         }
-
-        private string actorName;
-        public string ActorName => string.IsNullOrEmpty(actorName) ? gameObject.name : actorName;
 
         public InteractionResult BeginInteractionWith(Item interactionObject)
         {
