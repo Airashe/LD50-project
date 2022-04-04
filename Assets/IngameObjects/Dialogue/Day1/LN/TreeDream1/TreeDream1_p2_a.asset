@@ -37,7 +37,7 @@ MonoBehaviour:
     type: 0
     interactorId: 0
     quotes:
-    - data: 
+    - data: d
       quoteTime: 0
       scriptableEvent: {fileID: 0}
       nextDialogue: {fileID: 11400000, guid: fa790e42000754846a1c602331efc39c, type: 2}

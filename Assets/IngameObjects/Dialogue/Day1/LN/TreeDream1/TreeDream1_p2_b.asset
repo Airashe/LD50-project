@@ -24,7 +24,7 @@ MonoBehaviour:
       quoteTime: 0
       scriptableEvent: {fileID: 0}
       nextDialogue: {fileID: 0}
-  - name: "\u041A\u0430\u043A \u0442\u044B \u0443\u043C\u0435\u0435\u0448\u044C \u0433\u043E\u0432\u043E\u0440\u0438\u0442\u044C"
+  - name: "\u041E\u0442\u0432\u0435\u0442"
     evaluationSpeed: 14
     type: 0
     interactorId: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
       quoteTime: 0
       scriptableEvent: {fileID: 0}
       nextDialogue: {fileID: 0}
-  - name: 
+  - name: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0434\u0438\u0430\u043B\u043E\u0433"
     evaluationSpeed: 14
     type: 0
     interactorId: 0
