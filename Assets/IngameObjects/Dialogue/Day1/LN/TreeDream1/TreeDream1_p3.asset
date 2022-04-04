@@ -75,6 +75,15 @@ MonoBehaviour:
       quoteTime: 0
       scriptableEvent: {fileID: 0}
       nextDialogue: {fileID: 0}
+  - name: "\u041A\u043E\u043D\u0435\u0446 \u0434\u0438\u0430\u043B\u043E\u0433\u0430"
+    evaluationSpeed: 14
+    type: 2
+    interactorId: 0
+    quotes:
+    - data: 
+      quoteTime: 0
+      scriptableEvent: {fileID: 0}
+      nextDialogue: {fileID: 11400000, guid: b324219fe4fba69479d17186476764d9, type: 2}
   dialogueContext:
     dialogueParticiants:
     - {fileID: 0}

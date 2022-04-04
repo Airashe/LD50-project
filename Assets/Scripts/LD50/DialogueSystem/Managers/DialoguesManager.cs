@@ -20,7 +20,15 @@ namespace LD50.DialogueSystem.Managers
         private DialogueData activeDialogue;
         [SerializeField]
         private int currentItemIndex;
-        public DialogueItem CurrentItem => activeDialogue?.items[currentItemIndex] ?? DialogueItem.EndItem;
+        public DialogueItem CurrentItem
+        {
+            get
+            {
+                if (currentItemIndex < (activeDialogue?.Length ?? int.MinValue))
+                    return activeDialogue.items[currentItemIndex];
+                return DialogueItem.EndItem;
+            }
+        }
         public DialogueItem LastQuoteItem => lastQuoteItem ?? DialogueItem.EndItem;
         private DialogueItem lastQuoteItem;
 

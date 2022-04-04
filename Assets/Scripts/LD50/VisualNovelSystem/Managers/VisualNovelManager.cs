@@ -21,7 +21,11 @@ namespace Assets.Scripts.LD50.VisualNovelSystem.Managers
         public Sprite CurrentBackround
         {
             get => SpriteRenderer.sprite;
-            set => SpriteRenderer.sprite = value;
+            set
+            {
+                SpriteRenderer.sprite = value;
+                spriteRenderer.sprite = value;
+            }
         }
         
         public SpriteRenderer SpriteRenderer

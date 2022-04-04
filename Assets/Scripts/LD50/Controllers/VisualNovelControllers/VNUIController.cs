@@ -35,7 +35,7 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
         [SerializeField]
         private DynamicRect dialogueQouteRect = new DynamicRect(50, 92.5f, 73.68f, 15);
 
-        private DynamicRect dialogeAnswerButtonRect = new DynamicRect(50, 50, 10, 5);
+        private DynamicRect dialogeAnswerButtonRect = new DynamicRect(50, 50, 20, 3);
         
 
         private Rect[] inventoryItemsRects;
@@ -71,8 +71,8 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
 
         private void DrawDialogueChoise()
         {
-            if (DialoguesManager.Instance.CurrentItem.Type != DialogueSystem.Enums.DialogueItemType.Answer)
-                return;
+            if (DialoguesManager.Instance.CurrentItem.Type != DialogueSystem.Enums.DialogueItemType.Answer) return;
+            if (answersRects == null) CalculateAnswersRects();
 
             var currentItem = DialoguesManager.Instance.CurrentItem;
             GUI.Box(answersAreaRect, "");
@@ -169,6 +169,12 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
                 return;
             }
 
+            CalculateAnswersRects();
+            GetCurrentLine();
+        }
+
+        private void CalculateAnswersRects()
+        {
             if (DialoguesManager.Instance.CurrentItem.Type == DialogueSystem.Enums.DialogueItemType.Answer)
             {
                 var itemsCount = DialoguesManager.Instance.CurrentItem.Answers.Length;
@@ -181,13 +187,13 @@ namespace Assets.Scripts.LD50.Controllers.VisualNovelControllers
 
                 for (int i = 0; i < answersRects.Length; i++)
                 {
-                    buttonRect.position = new Vector2(currentAreaRect.x + Screen.width / 100, currentAreaRect.position.y + (buttonRect.height + Screen.height/100) * i);
+                    buttonRect.position = new Vector2(currentAreaRect.x + Screen.width / 100, currentAreaRect.position.y + (buttonRect.height + Screen.height / 100) * i);
                     buttonRect.y += Screen.height / 100;
                     answersRects[i] = buttonRect;
                 }
             }
-            GetCurrentLine();
         }
+
 
         private void GetCurrentLine()
         {
