@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b901f49cf53ac489151d7f4b566bfa, type: 3}
   m_Name: ScriptableEventTest 1
   m_EditorClassIdentifier: 
-  newBackground: {fileID: 21300000, guid: 12a712a3298a7d248af8da9ac2448968, type: 3}
+  newBackground: {fileID: -1559735137975714092, guid: 2c055f11f14170f4cab179cda6070eb3, type: 3}

@@ -16,6 +16,7 @@ using UnityEngine.SceneManagement;
 using Assets.Scripts.LD50.EventSystem.Manager;
 using Assets.Scripts.LD50.VisualNovelSystem.Managers;
 using Assets.Scripts.LD50.TickSystem.Managers;
+using Assets.Scripts.LD50.GameContextSystem.Managers;
 
 namespace LD50.Core
 {
@@ -39,6 +40,9 @@ namespace LD50.Core
 
         public ISystemManager TickManager => tickManager;
         public ISystemManager tickManager;
+
+        public ISystemManager GameContextManager => gameContextManager;
+        public ISystemManager gameContextManager;
 
         private bool IsAllManagersReady
         {
@@ -137,6 +141,7 @@ namespace LD50.Core
             eventManager = ManagerFactory.InitializeManager<EventManager>();
             visualNovelManager = ManagerFactory.InitializeManager<VisualNovelManager>();
             tickManager = ManagerFactory.InitializeManager<TickManager>();
+            gameContextManager = ManagerFactory.InitializeManager<GameContextManager>();
         }
 
         private bool IsManagersReady()

@@ -45,7 +45,8 @@ namespace Assets.Scripts.LD50.TickSystem.Managers
 
         public void Subscribe(Airashe.UCore.Common.Behaviours.IObserver<int> observer)
         {
-            observers.Add(observer);
+            if (!observers.Contains(observer))
+                observers.Add(observer);
         }
 
         public void Unsubscribe(Airashe.UCore.Common.Behaviours.IObserver<int> observer)

@@ -82,8 +82,8 @@ MonoBehaviour:
     quotes:
     - data: 
       quoteTime: 0
-      scriptableEvent: {fileID: 0}
-      nextDialogue: {fileID: 11400000, guid: b324219fe4fba69479d17186476764d9, type: 2}
+      scriptableEvent: {fileID: 11400000, guid: 98fe74b62335b144aacab644a9399d84, type: 2}
+      nextDialogue: {fileID: 0}
   dialogueContext:
     dialogueParticiants:
     - {fileID: 0}

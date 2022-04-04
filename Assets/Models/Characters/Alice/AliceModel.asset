@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8c5284983e31641a1d2dd9e3a45742, type: 3}
+  m_Name: AliceModel
+  m_EditorClassIdentifier: 
+  currentAnimationName: Idle
+  animations:
+  - name: Idle
+    playSpeedFront: 0
+    frontKeys:
+    - {fileID: -292130477401232252, guid: 6baa11d3a7e071e49933d4c69f3d3ae3, type: 3}
+    playSpeedBack: 0
+    backKeys:
+    - {fileID: -896015174945410185, guid: ea68f6593aeb3bb4d9941dcc26347485, type: 3}
+    playSpeedLeft: 0
+    leftKeys:
+    - {fileID: -5496779068786518581, guid: 9fd5086999d2fe548b04bf21cee52de7, type: 3}
+    playSpeedRight: 0
+    rightKeys:
+    - {fileID: -504397724606770763, guid: 0c14871e54e2a7543a283a453dd2d615, type: 3}
+  - name: Walk
+    playSpeedFront: 25
+    frontKeys:
+    - {fileID: -292130477401232252, guid: 9c71c8e3fecf11844a88aecfe8f83c03, type: 3}
+    - {fileID: -410676966024470389, guid: 9c71c8e3fecf11844a88aecfe8f83c03, type: 3}
+    - {fileID: -4567864944357712246, guid: 9c71c8e3fecf11844a88aecfe8f83c03, type: 3}
+    - {fileID: -3469391928390816990, guid: 9c71c8e3fecf11844a88aecfe8f83c03, type: 3}
+    playSpeedBack: 25
+    backKeys:
+    - {fileID: -2852760276398771432, guid: 0f8644a0b99c61042a7baa1c8203c8d8, type: 3}
+    - {fileID: -896015174945410185, guid: 0f8644a0b99c61042a7baa1c8203c8d8, type: 3}
+    - {fileID: 2472688139776969101, guid: 0f8644a0b99c61042a7baa1c8203c8d8, type: 3}
+    - {fileID: 6490624085131346298, guid: 0f8644a0b99c61042a7baa1c8203c8d8, type: 3}
+    playSpeedLeft: 20
+    leftKeys:
+    - {fileID: 7148196128054332983, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -4803625635464354586, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -5296104691587897476, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -85219135131174616, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -1455718945960876862, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -6857256248960180988, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -5280556671850354, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -174887579159782537, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    - {fileID: -4352331597381468969, guid: 89e6b678e8a966849bd6d9547b7b9ab4, type: 3}
+    playSpeedRight: 20
+    rightKeys:
+    - {fileID: -504397724606770763, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: 7616650876066435785, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: 4384159765811360208, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: 6160158290509222881, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: -3446952583599666491, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: 5798526137155765959, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: -3639309880167956041, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: 4264318092090651948, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+    - {fileID: -3843104262622674490, guid: 792bbbeb62c2e2a4197cfea85b78e245, type: 3}
+  - name: Empty
+    playSpeedFront: 0
+    frontKeys: []
+    playSpeedBack: 0
+    backKeys: []
+    playSpeedLeft: 0
+    leftKeys: []
+    playSpeedRight: 0
+    rightKeys: []
+  currentDirection: 0

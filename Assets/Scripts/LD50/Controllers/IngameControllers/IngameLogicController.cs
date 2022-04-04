@@ -1,6 +1,7 @@
 using Airashe.UCore.Common.Behaviours;
 using Airashe.UCore.Systems.Input;
 using Assets.Scripts.LD50.Controllers;
+using Assets.Scripts.LD50.ModelsSystem.Structs;
 using LD50.Controllers;
 using LD50.Controllers.Interfaces;
 using LD50.Core.Extensions;
@@ -169,21 +170,33 @@ namespace LD50.Core.Controllers
             }
 
             var movementDirection = Vector3.zero;
+            ModelDirection? modelDirection = null;
+            var modelRender = ControlledUnit?.GetComponent<ModelRender>();
             switch (activeCommand)
             {
                 case InputCommandType.MoveForward:
                     movementDirection.y = isActive ? 1 : 0;
+                    if (isActive) modelDirection = ModelDirection.Back;
                     break;
                 case InputCommandType.MoveBackward:
                     movementDirection.y = isActive ? -1 : 0;
+                    if (isActive) modelDirection = ModelDirection.Front;
                     break;
                 case InputCommandType.MoveLeft:
-                    movementDirection.x = isActive ? -1 : 0;
+                    modelDirection = ModelDirection.Left;
+                    if (isActive) movementDirection.x = isActive ? -1 : 0;
                     break;
                 case InputCommandType.MoveRight:
-                    movementDirection.x = isActive ? 1 : 0;
+                    modelDirection = ModelDirection.Right;
+                    if (isActive) movementDirection.x = isActive ? 1 : 0;
                     break;
             }
+            if (modelDirection != null)
+            {
+                modelRender.ModelDirection = (ModelDirection)modelDirection;
+            }
+            modelRender.PlayAnimation(isActive ? "Walk" : "Idle");
+
 
             ControlledUnit.MovementDirection = movementDirection;
         }
